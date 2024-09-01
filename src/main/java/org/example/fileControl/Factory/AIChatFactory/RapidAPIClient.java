@@ -2,7 +2,10 @@ package org.example.fileControl.Factory.AIChatFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.example.fileControl.common.AiChatConfig;
 import org.example.fileControl.dao.entity.Rapid;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,19 +14,21 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Slf4j
+@Component
 public class RapidAPIClient implements AIClient{
 
     private static final String API_URL = "https://infinite-gpt.p.rapidapi.com/infinite-gpt";
-    private String apiKey;
+
     @Override
     public String getResponse(String query) throws Exception {
+
         Rapid rapid=null;
 
        ObjectMapper objectMapper = new ObjectMapper();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://infinite-gpt.p.rapidapi.com/infinite-gpt"))
-                .header("x-rapidapi-key", "")
+                .header("x-rapidapi-key", AiChatConfig.RAPID_API_KEY)
                 .header("x-rapidapi-host", "infinite-gpt.p.rapidapi.com")
                 .header("Content-Type", "application/json")
                 .method("POST", HttpRequest.BodyPublishers.ofString("{\"query\":\""+query+"\",\"sysMsg\":\"You are a friendly Chatbot.\"}"))

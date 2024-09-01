@@ -16,7 +16,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**") // 匹配所有请求路径
-                .excludePathPatterns("/user/login",
+                .excludePathPatterns(
+                        "/user/login",
                         "/css/**",
                         "/videos/**",
                         "/templates/**",

@@ -18,6 +18,9 @@ public interface AiChatConfig {
 
 
     //智普密钥
+    public static final String RAPID_API_KEY = "";
+
     public static final String ZHIPU_API_KEY = "";
+
 
 }
