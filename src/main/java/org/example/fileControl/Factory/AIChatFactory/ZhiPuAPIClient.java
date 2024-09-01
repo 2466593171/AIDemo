@@ -7,6 +7,7 @@ import com.zhipu.oapi.service.v4.model.ChatMessageRole;
 import com.zhipu.oapi.service.v4.model.ModelApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.example.fileControl.common.AiChatConfig;
+import org.example.fileControl.util.ClientV4Util;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
@@ -16,8 +17,6 @@ public class ZhiPuAPIClient implements AIClient {
 
     @Override
     public String getResponse(String query) {
-
-        ClientV4 client = new ClientV4.Builder(AiChatConfig.ZHIPU_API_KEY).build();
 
         List<ChatMessage> messages = new ArrayList<>();
         ChatMessage chatMessage = new ChatMessage(ChatMessageRole.USER.value(), query);
@@ -30,7 +29,7 @@ public class ZhiPuAPIClient implements AIClient {
                 .messages(messages)
                 .build();
 
-        ModelApiResponse invokeModelApiResp = client.invokeModelApi(chatCompletionRequest);
+        ModelApiResponse invokeModelApiResp =  ClientV4Util.getClient().invokeModelApi(chatCompletionRequest);
 
         log.info("智普返回信息输出" + invokeModelApiResp);
 
