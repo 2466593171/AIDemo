@@ -39,9 +39,6 @@ public class ChatconfigController {
         try {
             // 将 List 转换为 JSON 字符串
             String jsonString = objectMapper.writeValueAsString(list);
-
-            System.out.println(jsonString);
-
             return new Result(200, jsonString);
         } catch (JsonProcessingException e) {
          log.error(e.getMessage());
