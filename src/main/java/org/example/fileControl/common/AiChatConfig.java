@@ -16,11 +16,4 @@ public interface AiChatConfig {
     public static final String ModelEmbedding2 = "embedding-2";
     public static final String ModelChatGLM3TURBO = "glm-3-turbo";
 
-
-    //智普密钥
-    public static final String RAPID_API_KEY = "";
-
-    public static final String ZHIPU_API_KEY = "";
-
-
 }

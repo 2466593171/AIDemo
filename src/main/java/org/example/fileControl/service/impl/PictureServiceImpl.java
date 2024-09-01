@@ -1,11 +1,6 @@
 package org.example.fileControl.service.impl;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.fileControl.Factory.AIChatFactory.AIClient;
-import org.example.fileControl.Factory.AIChatFactory.AIClientFactory;
 import org.example.fileControl.Factory.AIPictureFactory.AIPictureFactory;
 import org.example.fileControl.Factory.AIPictureFactory.PictureCilent;
-import org.example.fileControl.dao.entity.Chathistory;
 import org.example.fileControl.dao.entity.Picture;
 import org.example.fileControl.dao.mapper.PictureMapper;
 import org.example.fileControl.service.PictureService;

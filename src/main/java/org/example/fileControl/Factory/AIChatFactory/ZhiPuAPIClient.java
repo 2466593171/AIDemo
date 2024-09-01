@@ -7,11 +7,17 @@ import com.zhipu.oapi.service.v4.model.ChatMessageRole;
 import com.zhipu.oapi.service.v4.model.ModelApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.example.fileControl.util.ClientV4Util;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j
+@Component
 public class ZhiPuAPIClient implements AIClient {
 
+    @Value("${zhipu.api.key}")
+    private String apiKey;
     @Override
     public String getResponse(String query) {
 
@@ -26,7 +32,7 @@ public class ZhiPuAPIClient implements AIClient {
                 .messages(messages)
                 .build();
 
-        ModelApiResponse invokeModelApiResp =  ClientV4Util.getClient().invokeModelApi(chatCompletionRequest);
+        ModelApiResponse invokeModelApiResp =  ClientV4Util.getClient(apiKey).invokeModelApi(chatCompletionRequest);
 
         log.info("智普返回信息输出" + invokeModelApiResp);
 

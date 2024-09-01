@@ -5,16 +5,20 @@ import org.example.fileControl.common.AiChatConfig;
 import org.example.fileControl.dao.entity.Rapid;
 import org.example.fileControl.util.HttpClientUtil;
 import org.example.fileControl.util.JsonUtil;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Slf4j
+@Component
 public class RapidAPIClient implements AIClient{
 
+    @Value("${rapid.api.key}")
+    private String rapidApiKey;
     @Override
     public String getResponse(String query) throws Exception {
 
@@ -22,7 +26,8 @@ public class RapidAPIClient implements AIClient{
 
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://infinite-gpt.p.rapidapi.com/infinite-gpt"))
-                .header("x-rapidapi-key", AiChatConfig.RAPID_API_KEY)
+//                .header("x-rapidapi-key", AiChatConfig.RAPID_API_KEY)
+                .header("x-rapidapi-key", rapidApiKey)
                 .header("x-rapidapi-host", "infinite-gpt.p.rapidapi.com")
                 .header("Content-Type", "application/json")
                 .method("POST", HttpRequest.BodyPublishers.ofString("{\"query\":\"" + query + "\",\"sysMsg\":\"You are a friendly Chatbot.\"}"))

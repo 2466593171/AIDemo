@@ -27,12 +27,14 @@ public class ChathistoryServiceImpl extends ServiceImpl<ChathistoryMapper, Chath
     private ChathistoryMapper chathistoryMapper;
     @Autowired
     private WebContext webContext;
+    @Autowired
+    private AIClientFactory aiClientFactory;
 
     @Override
     public String sendMessage(Chathistory chathistory) {
         String response="";
 
-        AIClient aiClient = AIClientFactory.getAIClient(chathistory.getPlatform());
+        AIClient aiClient = aiClientFactory.getAIClient(chathistory.getPlatform());
         //先保存用户的信息
         Chathistory userChat = Chathistory.of().setContent(chathistory.getContent())
                 .setUserid(webContext.getCurrentUser().getId())
