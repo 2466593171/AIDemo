@@ -28,7 +28,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
        log.info("进入拦截器.............");
         String requestUri = request.getRequestURI(); // 获取请求的 URI
-        System.out.println("请求的地址"+requestUri);
+        log.info("请求的地址"+requestUri);
+
         // 排除不需要验证的路径
         if (requestUri.equals("/user/register") || requestUri.equals("/user/login")) {
             return true;
