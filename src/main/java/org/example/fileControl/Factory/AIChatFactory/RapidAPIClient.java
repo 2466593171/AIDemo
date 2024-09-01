@@ -15,8 +15,6 @@ import java.net.http.HttpResponse;
 @Slf4j
 public class RapidAPIClient implements AIClient{
 
-    private static final String API_URL = "https://infinite-gpt.p.rapidapi.com/infinite-gpt";
-
     @Override
     public String getResponse(String query) throws Exception {
 
